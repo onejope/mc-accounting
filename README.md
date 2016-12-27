@@ -1,1 +1,1 @@
-# mc-accounting
+# mc-donations
