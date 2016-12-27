@@ -1,6 +1,7 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <groupId>com.onejope.mc-dontations</groupId>
+   <groupId>com.onejope.mc-donations</groupId>
    <artifactId>ear</artifactId>
    <packaging>ear</packaging>
    <version>0.1-SNAPSHOT</version>
@@ -12,22 +13,26 @@
    </parent>
    <dependencies>
       <dependency>
-         <groupId>com.onejope.mc-dontations</groupId>
+         <groupId>com.onejope.mc-donations</groupId>
          <artifactId>ejbs</artifactId>
          <type>ejb</type>
+         <version>0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-         <groupId>com.onejope.mc-dontations.servlets</groupId>
+         <groupId>com.onejope.mc-donations.servlets</groupId>
          <artifactId>servlet</artifactId>
          <type>war</type>
+         <version>0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-         <groupId>com.onejope.mc-dontations</groupId>
+         <groupId>com.onejope.mc-donations</groupId>
          <artifactId>primary-source</artifactId>
+         <version>0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-         <groupId>com.onejope.mc-dontations.projects</groupId>
+         <groupId>com.onejope.mc-donations.projects</groupId>
          <artifactId>logging</artifactId>
+         <version>0.1-SNAPSHOT</version>
       </dependency>
    </dependencies>
    <build>
