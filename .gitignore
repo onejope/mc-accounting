@@ -14,3 +14,5 @@ hs_err_pid*
 .project
 .classpath
 .settings
+node_modules
+bundle.js
