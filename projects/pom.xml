@@ -1,0 +1,16 @@
+<project>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.onejope.mc-donations</groupId>
+   <version>0.1-SNAPSHOT</version>
+   <artifactId>projects</artifactId>
+   <packaging>pom</packaging>
+   <name>sub projects</name>
+   <parent>
+      <groupId>com.onejope</groupId>
+      <artifactId>mc-donations</artifactId>
+      <version>0.1-SNAPSHOT</version>
+   </parent>
+   <modules>
+      <module>logging</module>
+   </modules>
+</project>

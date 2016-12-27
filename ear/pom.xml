@@ -1,0 +1,47 @@
+<project>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.onejope.mc-dontations</groupId>
+   <artifactId>ear</artifactId>
+   <packaging>ear</packaging>
+   <version>0.1-SNAPSHOT</version>
+   <name>ear assembly</name>
+   <parent>
+      <groupId>com.onejope</groupId>
+      <artifactId>mc-donations</artifactId>
+      <version>0.1-SNAPSHOT</version>
+   </parent>
+   <dependencies>
+      <dependency>
+         <groupId>com.onejope.mc-dontations</groupId>
+         <artifactId>ejbs</artifactId>
+         <type>ejb</type>
+      </dependency>
+      <dependency>
+         <groupId>com.onejope.mc-dontations.servlets</groupId>
+         <artifactId>servlet</artifactId>
+         <type>war</type>
+      </dependency>
+      <dependency>
+         <groupId>com.onejope.mc-dontations</groupId>
+         <artifactId>primary-source</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.onejope.mc-dontations.projects</groupId>
+         <artifactId>logging</artifactId>
+      </dependency>
+   </dependencies>
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-ear-plugin</artifactId>
+            <configuration>
+               <archive>
+                  <manifest>
+                     <addClasspath>true</addClasspath>
+                  </manifest>
+               </archive>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

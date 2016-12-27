@@ -1,0 +1,17 @@
+<project>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.onejope.mc-dontations</groupId>
+   <artifactId>servlets</artifactId>
+   <packaging>pom</packaging>
+   <name>servlets</name>
+   <version>0.1-SNAPSHOT</version>
+   <parent>
+      <groupId>com.onejope</groupId>
+      <artifactId>mc-dontations</artifactId>
+      <version>0.1-SNAPSHOT</version>
+   </parent>
+   <modules>
+      <module>servlet</module>
+   </modules>
+</project>
+
