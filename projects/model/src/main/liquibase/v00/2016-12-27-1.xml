@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+  <changeSet id="1-1" author="onejope">
+    <createTable tableName="account">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_account"/>
+      </column>
+      <column name="account_name" type="VARCHAR(50)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1-2" author="onejope">
+    <createTable tableName="category">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_category"/>
+      </column>
+      <column name="category_name" type="VARCHAR(50)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="is_tax_deductible" type="BOOLEAN">
+        <constraints nullable="false"/>
+      </column>
+      <column name="account_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1-3" author="onejope">
+    <createTable tableName="contributor">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_contributor"/>
+      </column>
+      <column name="first_name" type="VARCHAR(25)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name" type="VARCHAR(25)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="street" type="VARCHAR(50)"/>
+      <column name="city" type="VARCHAR(50)"/>
+      <column name="state" type="VARCHAR(25)"/>
+      <column name="postal_code" type="VARCHAR(10)"/>
+      <column name="phone" type="VARCHAR(20)"/>
+    </createTable>
+    <addUniqueConstraint constraintName="unique_contributor_name" 
+        tableName="contributor" columnNames="first_name, last_name"/>
+  </changeSet>
+  <changeSet id="1-4" author="onejope">
+    <createTable tableName="contribution">
+      <column name="deposit_id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="pk_contribution"/>
+      </column>
+      <column name="contributor_id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="pk_contribution"/>
+      </column>
+      <column name="category_id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="pk_contribution"/>
+      </column>
+      <column name="amount" type="CURRENCY">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1-5" author="onejope">
+    <createTable tableName="deposit">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_deposit"/>
+      </column>
+      <column name="deposit_number" type="VARCHAR(25)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="deposit_date" type="date">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1-6" author="onejope">
+    <addForeignKeyConstraint constraintName="fk_category_account" onDelete="CASCADE" onUpdate="RESTRICT"
+        baseTableName="category" baseColumnNames="account_id"
+        referencedTableName="account" referencedColumnNames="id"/>
+  </changeSet>
+  <changeSet id="1-7" author="onejope">
+    <addForeignKeyConstraint constraintName="fk_contribution_category" onDelete="CASCADE" onUpdate="RESTRICT"
+        baseTableName="contribution" baseColumnNames="category_id"
+        referencedTableName="category" referencedColumnNames="id"/>
+  </changeSet>
+  <changeSet id="1-8" author="onejope">
+    <addForeignKeyConstraint constraintName="fk_contribution_contributor" onDelete="CASCADE" onUpdate="RESTRICT"
+        baseTableName="contribution" baseColumnNames="contributor_id"
+        referencedTableName="contributor" referencedColumnNames="id"/>
+  </changeSet>
+  <changeSet id="1-9" author="onejope">
+    <addForeignKeyConstraint constraintName="fk_contribution_deposit" onDelete="CASCADE" onUpdate="RESTRICT"
+        baseTableName="contribution" baseColumnNames="deposit_id"
+        referencedTableName="deposit" referencedColumnNames="id"/>
+  </changeSet>
+</databaseChangeLog>
