@@ -15,6 +15,22 @@
   		<artifactId>mysql-connector-java</artifactId>
   		<version>5.1.40</version>
   	</dependency>
+  	<dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.5.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.22</version>
+    </dependency>
+    <!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>3.2.4</version>
+    </dependency>
   </dependencies>
   <build>
     <pluginManagement>
