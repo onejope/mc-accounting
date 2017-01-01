@@ -8,12 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 
 @Entity
 @Table(name="category")
+@NamedQuery(name=Category.FIND_ALL_QUERY, query="SELECT c FROM Category c")
 public class Category {
 
+  public static final String FIND_ALL_QUERY = "Category.findAll";  
+  
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
@@ -24,10 +29,11 @@ public class Category {
   @Column(name="is_tax_deductible",nullable=false)
   private Boolean taxDeductible;
   
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   @JoinColumn(name="account_id")
   private Account account;
 
+  @XmlElement(required=true)
   public Long getId() {
     return id;
   }
@@ -36,6 +42,7 @@ public class Category {
     this.id = id;
   }
 
+  @XmlElement(required=true)
   public String getName() {
     return name;
   }
@@ -44,6 +51,7 @@ public class Category {
     this.name = name;
   }
 
+  @XmlElement
   public Boolean getTaxDeductible() {
     return taxDeductible;
   }
@@ -52,6 +60,7 @@ public class Category {
     this.taxDeductible = taxDeductible;
   }
 
+  @XmlElement
   public Account getAccount() {
     return account;
   }

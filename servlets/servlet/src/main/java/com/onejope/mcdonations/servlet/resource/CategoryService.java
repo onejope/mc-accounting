@@ -1,6 +1,5 @@
 package com.onejope.mcdonations.servlet.resource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,18 +9,18 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import com.onejope.mcdonations.model.Account;
+import com.onejope.mcdonations.model.Category;
 import com.onejope.mcdonations.model.utils.EntityManagerFactoryUtil;
 
-@Path("/accounts")
-public class AccountResource {
+@Path("/categories")
+public class CategoryService {
   @GET
   @Produces("application/json")
-  public List<Account> getAccounts() {
+  public List<Category> getCategories() {
     EntityManager entityManager = null;
     try {
       entityManager = EntityManagerFactoryUtil.getEntityManager();
-      return entityManager.createNamedQuery(Account.FIND_ALL_QUERY,Account.class).getResultList();
+      return entityManager.createNamedQuery(Category.FIND_ALL_QUERY,Category.class).getResultList();
     } finally {
       if(entityManager != null) {
         entityManager.close();
@@ -31,7 +30,7 @@ public class AccountResource {
   
   @POST
   @Consumes("application/json")
-  public void addAccount(Account account) {
+  public void addCategory(Category account) {
     
   }
 }
