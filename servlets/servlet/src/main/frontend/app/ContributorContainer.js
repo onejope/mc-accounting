@@ -8,39 +8,46 @@ const API_HEADERS = {
 	Authorization: 'any-string-you-like'
 }
 
-class AccountContainer extends Component {
+class ContributorContainer extends Component {
   constructor() {
 	super();
 	this.state={
-	    accounts:[]
+	    contributors:[]
     }
   }
 
   componentDidMount(){
-    fetch('./rest/accounts')
+    fetch('./rest/contributors')
     .then((response) => response.json())
     .then((responseData) => {
-    	this.setState({accounts: responseData});
+    	this.setState({contributors: responseData});
     })
     .catch((error) => {
     	console.log('Error fetching and parsing data', error);
     });
   }
   
-  addAccount(name){
+  addContributor(firstName, lastName, street, city, state, postalCode, phone){
 	// Keep reference to original state prior to mutations, so can revert 
 	// optimistic changes
 	let prevState = this.state
 	    
-	let newAccount = {name: name};
-	let nextState = update(this.state.accounts, {$push: [newAccount]});
+	let newContributor = {firstName: firstName,
+			              lastName: lastName,
+			              street: street,
+			              city: city,
+			              state: state,
+			              postalCode: postalCode,
+			              phone: phone
+	                     };
+	let nextState = update(this.state.contributors, {$push: [newContributor]});
 	    
-	this.setState({accounts:nextState});
+	this.setState({contributors:nextState});
 	
-	fetch('rest/accounts', {
+	fetch('rest/contributors', {
         method: 'POST',
         headers: API_HEADERS,
-        body: JSON.stringify(newAccount)
+        body: JSON.stringify(newContributor)
 	})
 	.then((response) => {
 	  if(response.ok){
@@ -50,11 +57,11 @@ class AccountContainer extends Component {
 	  }
 	})
 	.then((responseData) => {
-	  newAccount.id=responseData.id;
-	  this.setState({accounts:nextState});
+      newContributor.id=responseData.id;
+	  this.setState({contributors:nextState});
 	})
 	.catch((error) => {
-    	console.log('Error posting account data', error);
+    	console.log('Error posting contributor data', error);
     	this.setState(prevState);
     });
   } 
@@ -63,8 +70,9 @@ class AccountContainer extends Component {
     return (
       <div>
         { React.Children.map( this.props.children, child => React.cloneElement(child, {
-        	  accounts: this.state.accounts, 
-        	  accountCallbacks: {add: this.addAccount.bind(this)}
+        	  contributors: this.state.contributors, 
+        	  contributorCallbacks: {add: this.addContributor.bind(this)},
+        	  categories: this.props.categories
             }))
         }
       </div>
@@ -72,4 +80,4 @@ class AccountContainer extends Component {
   }
 }
 
-export default AccountContainer;
+export default ContributorContainer;

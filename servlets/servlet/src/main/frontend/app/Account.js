@@ -6,6 +6,7 @@ class Account extends Component {
     return (
       <div>
         <div>{this.props.name}</div>
+        <br />
       </div>
     );
   }

@@ -49,14 +49,17 @@
   </changeSet>
   <changeSet id="1-4" author="onejope">
     <createTable tableName="contribution">
-      <column name="deposit_id" type="BIGINT">
+      <column name="id" type="BIGINT" autoIncrement="true">
         <constraints primaryKey="true" primaryKeyName="pk_contribution"/>
+      </column>
+      <column name="deposit_id" type="BIGINT">
+        <constraints nullable="false"/>
       </column>
       <column name="contributor_id" type="BIGINT">
-        <constraints primaryKey="true" primaryKeyName="pk_contribution"/>
+        <constraints nullable="false"/>
       </column>
       <column name="category_id" type="BIGINT">
-        <constraints primaryKey="true" primaryKeyName="pk_contribution"/>
+        <constraints nullable="false"/>
       </column>
       <column name="amount" type="CURRENCY">
         <constraints nullable="false"/>

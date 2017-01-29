@@ -11,23 +11,23 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import com.onejope.mcdonations.model.Category;
+import com.onejope.mcdonations.model.Contributor;
 
-@Path("/categories")
+@Path("/contributors")
 @Stateless
-public class CategoryService {
+public class ContributorService {
   @PersistenceContext(unitName = "model")
   EntityManager em;
 
   @GET
   @Produces("application/json")
-  public List<Category> getCategories() {
-    return em.createNamedQuery(Category.FIND_ALL_QUERY, Category.class).getResultList();
+  public List<Contributor> getContributors() {
+    return em.createNamedQuery(Contributor.FIND_ALL_QUERY, Contributor.class).getResultList();
   }
 
   @POST
   @Consumes("application/json")
-  public void addCategory(Category category) {
-    em.persist(category);
+  public void addContributor(Contributor contributor) {
+    em.persist(contributor);
   }
 }

@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import AccountContainer from './AccountContainer';
+import AccountPanel from './AccountPanel';
 import CategoryContainer from './CategoryContainer';
+import CategoryPanel from './CategoryPanel';
+import ContributorContainer from './ContributorContainer';
+import ContributorPanel from './ContributorPanel';
+import DepositPanel from './DepositPanel';
 
 class App extends Component {
   render() { 
@@ -13,12 +18,32 @@ class App extends Component {
           <TabList>
             <Tab>Accounts</Tab>
             <Tab>Categories</Tab>
+            <Tab>Contributors</Tab>
+            <Tab>Deposit</Tab>
           </TabList>
           <TabPanel>
-            <AccountContainer />
+            <AccountContainer>
+              <AccountPanel />
+          	</AccountContainer>
           </TabPanel>
           <TabPanel>
-            <CategoryContainer />
+            <AccountContainer>
+              <CategoryContainer>
+                <CategoryPanel />
+              </CategoryContainer>
+            </AccountContainer>
+          </TabPanel>
+          <TabPanel>
+            <ContributorContainer>
+              <ContributorPanel />
+            </ContributorContainer>
+          </TabPanel>
+          <TabPanel>
+            <CategoryContainer>
+              <ContributorContainer>
+                <DepositPanel />
+              </ContributorContainer>
+            </CategoryContainer>
           </TabPanel>
         </Tabs>
       </div>

@@ -1,46 +1,47 @@
 package com.onejope.mcdonations.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="contributor")
+@Table(name = "contributor")
+@NamedQuery(name = Contributor.FIND_ALL_QUERY, query = "SELECT c FROM Contributor c")
 public class Contributor {
 
+  public static final String FIND_ALL_QUERY = "Contributor.findAll";
+
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  
-  @Column(name="first_name",nullable=false,length=25)
+
+  @Column(name = "first_name", nullable = false, length = 25)
   private String firstName;
-  
-  @Column(name="last_name",nullable=false,length=25)
+
+  @Column(name = "last_name", nullable = false, length = 25)
   private String lastName;
-  
-  @Column(name="street",nullable=false,length=50)
+
+  @Column(name = "street", nullable = false, length = 50)
   private String street;
-  
-  @Column(name="city",nullable=false,length=50)
+
+  @Column(name = "city", nullable = false, length = 50)
   private String city;
-  
-  @Column(name="state",nullable=false,length=25)
+
+  @Column(name = "state", nullable = false, length = 25)
   private String state;
-  
-  @Column(name="postal_code",nullable=false,length=10)
+
+  @Column(name = "postal_code", nullable = false, length = 10)
   private String postalCode;
-  
-  @Column(name="phone",nullable=false,length=20)
+
+  @Column(name = "phone", nullable = false, length = 20)
   private String phone;
-  
-  @OneToMany(mappedBy="contributor")
-  private List<Contribution> contributions;
+
+  // @OneToMany(mappedBy = "contributor")
+  // private List<Contribution> contributions;
 
   public Long getId() {
     return id;
@@ -106,11 +107,11 @@ public class Contributor {
     this.phone = phone;
   }
 
-  public List<Contribution> getContributions() {
-    return contributions;
-  }
-
-  public void setContributions(List<Contribution> contributions) {
-    this.contributions = contributions;
-  }
+  // public List<Contribution> getContributions() {
+  // return contributions;
+  // }
+  //
+  // public void setContributions(List<Contribution> contributions) {
+  // this.contributions = contributions;
+  // }
 }
